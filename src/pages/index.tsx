@@ -3,10 +3,11 @@ import InfiniteTweetList from "~/components/InfiniteTweetList";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { NextPage } from "next";
 
 const TABS = ["Recent", "Following"] as const;
 
-export default function Home() {
+const Home: NextPage = () => {
   const session = useSession();
   const [selectedTab, setSelectedTab] =
     useState<(typeof TABS)[number]>("Recent");
@@ -39,7 +40,7 @@ export default function Home() {
       {selectedTab === "Recent" ? <RecentTweets /> : <FollowingTweets />}
     </>
   );
-}
+};
 
 function RecentTweets() {
   const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
@@ -72,3 +73,5 @@ function FollowingTweets() {
     />
   );
 }
+
+export default Home;

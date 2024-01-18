@@ -10,6 +10,22 @@ import {
 } from "~/server/api/trpc";
 
 export const tweetRouter = createTRPCRouter({
+  infiniteProfileFeed:publicProcedure.input(
+    z.object({
+      userId: z.string(),
+      limit: z.number().optional(), 
+      cursor: z.object({id: z.string(), createdAt: z.date()}).optional(),
+      })
+    ).query(async ({input: {limit = 10, userId, cursor}, ctx}) => {
+      const currrentUserId = ctx.session?.user.id
+      return await getInfiniteTweets({
+        limit, ctx, cursor, 
+        whereClause: {
+          userId
+        }
+      })
+    }),
+      
   infiniteFeed: publicProcedure.input(
     z.object({
       onlyFollowing: z.boolean().optional(),
@@ -17,7 +33,7 @@ export const tweetRouter = createTRPCRouter({
       cursor: z.object({id: z.string(), createdAt: z.date()}).optional(),
       })
     )
-    .query(async ({input: {limit = 10,onlyFollowing = false, cursor}, ctx}) => {
+    .query(async ({input: {limit = 10, onlyFollowing = false, cursor}, ctx}) => {
       const currrentUserId = ctx.session?.user.id
       return await getInfiniteTweets({
         limit, ctx, cursor, whereClause: currrentUserId == null || !onlyFollowing ? undefined : {
@@ -39,6 +55,7 @@ export const tweetRouter = createTRPCRouter({
           userId: ctx.session.user.id
         }
       })
+      void ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
       return tweet
     }),
   toggleLike: protectedProcedure
