@@ -1,28 +1,15 @@
-# Create T3 App
+# Social Media App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+![Social Media App Screenshot](./screenshots/home_screenshot.png)
 
-## What's next? How do I make an app with this?
+This project is a social media application that allows users to connect, share, and engage with content in a dynamic online community. Built using the [T3 Stack](https://create.t3.gg/), this app leverages the best practices of modern web development to provide a scalable and maintainable platform.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This is my first time using the T3 stack, and the only trouble I had was using tRPC. I'm still a beginner with it after watching a few tutorials on YouTube, so it's still a bit confusing.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Key features of this Social Media App include:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- User authentication and profile management using [NextAuth.js](https://next-auth.js.org).
+- Real-time data fetching and mutations with [tRPC](https://trpc.io).
+- A robust database schema designed with [Prisma](https://prisma.io), allowing for complex queries and data relations.
+- Responsive and modern UI components styled with [Tailwind CSS](https://tailwindcss.com).
+- Infinite scrolling for a seamless user experience.
